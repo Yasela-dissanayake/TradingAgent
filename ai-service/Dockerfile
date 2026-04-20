@@ -17,7 +17,8 @@ RUN pip install --no-cache-dir -r ./ai-service/requirements.txt
 # Copy the FastAPI app
 COPY ai-service/main.py ./ai-service/main.py
 
-# Expose 8000 so Railway can forward traffic
-EXPOSE 8000
+# Set working directory to ai-service so uvicorn finds main.py directly.
+# sys.path in main.py adds /app (parent) so tradingagents package is still importable.
+WORKDIR /app/ai-service
 
-CMD ["sh", "-c", "cd ai-service && uvicorn main:app --host 0.0.0.0 --port 8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
