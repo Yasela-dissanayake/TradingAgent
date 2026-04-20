@@ -3,8 +3,8 @@
 @theme {
   --color-background: #0a0b0d;
   --color-surface: #15171c;
+  --color-primary: #00c39a;
   --color-primary-light: #2cdaba;
-  --color-primary-DEFAULT: #00c39a;
   --color-primary-dark: #008b6e;
   --color-danger: #ff4c4c;
   --color-muted: #8f9fb3;
