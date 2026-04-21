@@ -3,7 +3,10 @@ import axios from "axios";
 import { supabase } from "../supabaseClient";
 
 const router = Router();
-const AI_SERVICE_URL = process.env.AI_SERVICE_URL || "http://localhost:8000";
+let AI_SERVICE_URL = process.env.AI_SERVICE_URL || "http://localhost:8000";
+if (AI_SERVICE_URL && !AI_SERVICE_URL.startsWith("http")) {
+  AI_SERVICE_URL = `https://${AI_SERVICE_URL}`;
+}
 
 router.post("/", async (req, res) => {
   const { asset, userId } = req.body;
