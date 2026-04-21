@@ -9,6 +9,7 @@ import {
   Check,
 } from "lucide-react";
 import { cn } from "../lib/utils";
+import API_BASE from "../lib/api";
 
 interface Signal {
   id: string;
@@ -156,9 +157,7 @@ export default function TradeHistory() {
         setLoading(false);
         return;
       }
-      const res = await axios.get(
-        `http://localhost:4000/signals?userId=${userId}`,
-      );
+      const res = await axios.get(`${API_BASE}/signals?userId=${userId}`);
       setHistory(res.data);
     } catch (err) {
       console.error(err);

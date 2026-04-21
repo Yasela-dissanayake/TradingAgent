@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Activity } from "lucide-react";
 import { cn } from "../lib/utils";
+import API_BASE from "../lib/api";
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
@@ -18,7 +19,7 @@ export default function Auth() {
     setLoading(true);
     try {
       const endpoint = isLogin ? "/auth/login" : "/auth/register";
-      const res = await axios.post(`http://localhost:4000${endpoint}`, {
+      const res = await axios.post(`${API_BASE}${endpoint}`, {
         email,
         password,
       });

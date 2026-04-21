@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Zap, AlertTriangle } from "lucide-react";
 import { cn } from "../lib/utils";
+import API_BASE from "../lib/api";
 
 // Maps display labels → ticker symbols TradingAgents/yfinance understands
 const ASSETS = [
@@ -43,7 +44,7 @@ export default function SignalAnalyzer() {
     try {
       const userId = localStorage.getItem("userId");
       const res = await axios.post(
-        "http://localhost:4000/analyze",
+        `${API_BASE}/analyze`,
         { asset, userId },
         { timeout: 600_000 },
       );
