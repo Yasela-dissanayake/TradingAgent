@@ -30,7 +30,7 @@ from tradingagents.default_config import DEFAULT_CONFIG  # noqa: E402
 # ---------------------------------------------------------------------------
 # Configuration — OpenRouter + free Gemma model
 # ---------------------------------------------------------------------------
-OPENROUTER_MODEL = os.getenv("TRADINGAGENTS_MODEL", "google/gemini-2.5-flash:free")
+OPENROUTER_MODEL = os.getenv("TRADINGAGENTS_MODEL", "google/gemma-4-26b-a4b-it")
 
 _AI_CONFIG = {
     **DEFAULT_CONFIG,
