@@ -29,7 +29,9 @@ router.post("/", async (req, res) => {
 
     return res.status(200).json(data[0]);
   } catch (err: any) {
-    return res.status(500).json({ error: err.message });
+    const errorMsg =
+      err.response?.data?.detail || err.response?.data?.error || err.message;
+    return res.status(500).json({ error: errorMsg });
   }
 });
 
