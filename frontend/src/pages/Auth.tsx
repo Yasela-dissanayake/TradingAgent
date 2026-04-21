@@ -33,7 +33,12 @@ export default function Auth() {
         setError("Registration successful. Please log in.");
       }
     } catch (err: any) {
-      setError(err.response?.data?.error || "An error occurred");
+      const errMsg =
+        err.response?.data?.error ||
+        err.response?.data?.message ||
+        err.message ||
+        "An error occurred";
+      setError(typeof errMsg === "string" ? errMsg : JSON.stringify(errMsg));
     } finally {
       setLoading(false);
     }
