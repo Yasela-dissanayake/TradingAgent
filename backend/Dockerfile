@@ -1,21 +1,19 @@
 FROM node:20-slim AS builder
 WORKDIR /app
 
-# Install ALL deps (including devDependencies needed for tsc)
-COPY package*.json ./
+# Build context is the repo root, so reference backend/ explicitly
+COPY backend/package*.json ./
 RUN npm ci
 
-# Copy source and compile TypeScript → dist/
-COPY . .
+COPY backend/ .
 RUN npm run build
 
 # ---
 FROM node:20-slim
 WORKDIR /app
 
-# Only install production deps in the final image
-COPY package*.json ./
-RUN npm ci --only=production
+COPY backend/package*.json ./
+RUN npm install --omit=dev
 
 # Copy compiled output from builder stage
 COPY --from=builder /app/dist ./dist
